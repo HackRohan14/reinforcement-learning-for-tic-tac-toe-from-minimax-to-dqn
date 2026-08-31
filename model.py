@@ -607,8 +607,15 @@ def play_minimax_vs_minimax_matches(n_games):
         'all_draws': all(status == "draw" for status in outcomes)
     }
 
-# Step 31 - encode_board_state_key (not yet solved)
-# TODO: implement
+# Step 31 - encode_board_state_key
+def encode_board_state_key(board):
+    mapping = {
+        0: '0',
+        1: '1',
+        -1: '2'
+    }
+
+    return ''.join(mapping[cell] for row in board for cell in row)
 
 # Step 32 - canonical_board_key (not yet solved)
 # TODO: implement
