@@ -672,8 +672,15 @@ def epsilon_decay_schedule(initial_epsilon, episode_index, min_epsilon, decay_ra
     # TODO: compute exponential decay of initial_epsilon over episode_index, clipped to a floor.
     return max(min_epsilon,initial_epsilon* (np.exp(-1*decay_rate*episode_index)))
 
-# Step 40 - epsilon_greedy_explore_move (not yet solved)
-# TODO: implement
+# Step 40 - epsilon_greedy_explore_move
+def epsilon_greedy_explore_move(legal_actions, rng):
+    """Sample a uniformly random legal action from legal_actions using rng."""
+    action = rng.choice(legal_actions)
+
+    if hasattr(action, "__iter__") and not isinstance(action, (str, bytes)):
+        return tuple(int(x) for x in action)
+
+    return int(action)
 
 # Step 41 - epsilon_greedy_select_action (not yet solved)
 # TODO: implement
