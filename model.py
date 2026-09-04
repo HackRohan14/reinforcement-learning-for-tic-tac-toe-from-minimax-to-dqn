@@ -694,8 +694,19 @@ def epsilon_greedy_select_action(q_table, state_key, legal_actions, epsilon, rng
         key=lambda action: q_table.get((state_key, action), 0.0)
     )
 
-# Step 42 - greedy_argmax_over_legal_actions (not yet solved)
-# TODO: implement
+# Step 42 - greedy_argmax_over_legal_actions
+def greedy_argmax_over_legal_actions(q_table, state_key, legal_actions, rng):
+    """Return the legal action with the highest Q-value (random tie-break)."""
+
+    q_values = [get_q_value(q_table, state_key, action) for action in legal_actions]
+    max_q = max(q_values)
+
+    best_actions = [
+        action for action, q in zip(legal_actions, q_values)
+        if q == max_q
+    ]
+
+    return best_actions[rng.integers(len(best_actions))]
 
 # Step 43 - random_tie_break_argmax (not yet solved)
 # TODO: implement
